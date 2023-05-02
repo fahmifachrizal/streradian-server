@@ -1,0 +1,25 @@
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "username": "rrattery0@1und1.de",
+    "password" : "Ua6x3ayb"
+}
+
+###
+
+
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+    "username": "admin@mail.com",
+    "password" : "admin@mail.com",
+    "email": "admin@mail.com",
+    "phoneNumber": "9191134412",
+    "address": "4 Ludington Parkway"
+}
+
+###
