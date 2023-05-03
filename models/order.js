@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
-      Order.hasOne(models.Car, {foreignKey: 'carId'})
+      Order.belongsTo(models.Car, {foreignKey: 'carId'})
       Order.belongsTo(models.User, {foreignKey: 'userId'})
       Order.belongsTo(models.Admin, {foreignKey: 'adminId'})
     }

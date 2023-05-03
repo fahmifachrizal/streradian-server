@@ -12,17 +12,14 @@ class Controller {
 
   static async postCar(req, res, next) {
     try {
-      const { id, isAdmin } = req.user
       const data = req.body
-
-      if (isAdmin) throw {name: 'Forbidden'}
 
       const dataCar = { 
         name:data.name, 
         carType:data.carType, 
         rating:+data.rating, 
         fuel:+data.fuel, 
-        image:+data.image,
+        image:data.image,
         hourRate:+data.hourRate,
         dayRate:(+data.dayRate?+data.dayRate:data.hourRate*24),
         monthRate:(+data.monthRate?+data.monthRate:data.hourRate*24*30),  
@@ -40,7 +37,6 @@ class Controller {
       try {
           let { id } = req.params
           
-
           let data = await Car.findByPk(id)
           let isFound = data
           if (isFound) {
@@ -56,10 +52,10 @@ class Controller {
 
   static async deleteCarById(req, res, next) {
       try {
-          let { id, isAdmin } = req.params
-          if (isAdmin) throw {name: 'Forbidden'}
+          let { id } = req.params
 
           let data = await Car.findByPk(id)
+
           let isFound = data
           await Car.destroy({ where: { id } })
           if (!isFound) {
@@ -75,8 +71,6 @@ class Controller {
   static async editCarById(req, res, next) {
     try {
       const { id: CarId } = req.params
-      const { id, isAdmin } = req.user
-      if (isAdmin) throw {name: 'Forbidden'}
 
       const data = req.body
       const dataCar = { 
@@ -84,14 +78,14 @@ class Controller {
         carType:data.carType, 
         rating:+data.rating, 
         fuel:+data.fuel, 
-        image:+data.image,
+        image:data.image,
         hourRate:+data.hourRate,
         dayRate:(+data.dayRate?+data.dayRate:data.hourRate*24),
         monthRate:(+data.monthRate?+data.monthRate:data.hourRate*24*30),  
       }
       const createdCar = await Car.update(dataCar, { where:{id:CarId}, returning:true })
 
-      res.status(201).json({ statusCode: 201, message:`Record with given id: ${CarId} has been updated`, createdCar })
+      res.status(201).json({ statusCode: 201, message:`Record with given id: ${CarId} has been updated`, createdCar:createdCar[1][0] })
     } catch (error) {
       next(error)
     }

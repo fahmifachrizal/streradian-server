@@ -8,23 +8,19 @@ const authentication = async (req, res, next) => {
         
         payload = tokenDecoder(access_token)
         let data 
-        let isAdmin = false
-        data = await User.findByPk(payload.id)
+        if (!payload.isAdmin){
+          data = await User.findByPk(payload.id)
+        } else {
+          data = await Admin.findByPk(payload.id)
+        }
       
         if (!data) {
-          if (!data) {
-            data = await Admin.findByPk(payload.id)
-            isAdmin = true
-          }
-          else { 
-            next({name: 'Unauthenticated'}) 
-          } 
+          next({name: 'Unauthenticated'})  
         }
     
         req.user = {
             id: payload.id,
-            email: payload.email,
-            isAdmin
+            isAdmin: payload.isAdmin
         }
         next()
     } catch(error) {
@@ -34,8 +30,9 @@ const authentication = async (req, res, next) => {
 
 const authorization = async (req, res, next) => {
     try{
-        const role = req.user.isAdmin
-        if (!role){
+        const { isAdmin } = req.user
+        console.log(req.user)
+        if (!isAdmin){
           throw {name: 'Forbidden'}
         } else {
           next()

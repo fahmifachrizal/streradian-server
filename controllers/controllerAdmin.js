@@ -1,6 +1,6 @@
 const { comparePassword } = require('../helpers/bcrypt')
 const { tokenGenerator } = require('../helpers/jwt')
-const { User } = require('../models/index')
+const { Admin } = require('../models/index')
 
 class Controller {
     static async login(req, res, next) {
@@ -9,7 +9,7 @@ class Controller {
             if (!email || !password){
                 throw { name: 'EmailOrPasswordRequired' }
             }
-            const data = await User.findOne({ where: { email} })
+            const data = await Admin.findOne({ where: { email} })
             if (!data) {
                 throw { name: 'InvalidCredentials' }
             }
@@ -20,11 +20,10 @@ class Controller {
 
             let payload = {
                 id : data.id,
-                username: data.username,
                 isAdmin: true
             }
             let access_token = tokenGenerator(payload)
-            res.status(200).json({ access_token, username: data.username, role: data.role, id:data.id})
+            res.status(200).json({ access_token, username: 'Admin', isAdmin:true, id:data.id})
 
         } catch (error) {
             next(error)

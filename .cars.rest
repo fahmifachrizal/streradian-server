@@ -1,0 +1,105 @@
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "email": "fahmi@mail.com",
+  "password" : "fahmi123"
+}
+
+###
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{ 
+  "email":"fahmi@mail.com", 
+  "phoneNumber":"081234567890", 
+  "city":"Jakarta", 
+  "zip":"12345", 
+  "message":"Hello World", 
+  "password":"fahmi123", 
+  "username":"fahmi123", 
+  "address":"Jl. Jalan" 
+}
+
+###
+POST http://localhost:3000/admins/login
+Content-Type: application/json
+
+{  
+  "email":"admin@mail.com",
+  "password":"admin123"
+}
+
+###
+GET http://localhost:3000/cars/
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZmFobWlAbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjgzMDM0OTM0fQ.wkVi0jrn81pt56M_6PLZb07dKfNndbjhf24t3MjgS8Q
+
+###
+GET http://localhost:3000/cars/2
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZmFobWlAbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjgzMDM0OTM0fQ.wkVi0jrn81pt56M_6PLZb07dKfNndbjhf24t3MjgS8Q
+
+
+### AS USER
+POST http://localhost:3000/cars/
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZmFobWlAbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjgzMDM0OTM0fQ.wkVi0jrn81pt56M_6PLZb07dKfNndbjhf24t3MjgS8Q
+
+### AS USER
+PUT http://localhost:3000/cars/1
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZmFobWlAbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjgzMDM0OTM0fQ.wkVi0jrn81pt56M_6PLZb07dKfNndbjhf24t3MjgS8Q
+
+### AS USER
+DELETE http://localhost:3000/cars/4
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiZmFobWlAbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjgzMDM0OTM0fQ.wkVi0jrn81pt56M_6PLZb07dKfNndbjhf24t3MjgS8Q
+
+### AS ADMIN
+GET http://localhost:3000/cars/
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjgzMDMzNTExfQ.fSbUjbVmnxlN3uA1e19BT63OizNU4OCZCnSoeJIlmiI
+
+### AS ADMIN
+GET http://localhost:3000/cars/2
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjgzMDMzNTExfQ.fSbUjbVmnxlN3uA1e19BT63OizNU4OCZCnSoeJIlmiI
+
+### AS ADMIN
+POST http://localhost:3000/cars/
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjgzMDMzNTExfQ.fSbUjbVmnxlN3uA1e19BT63OizNU4OCZCnSoeJIlmiI
+
+{ 
+  "name":"Test3",
+  "carType":"Test3",
+  "rating":3.32,
+  "fuel":8.69,
+  "image":"http://dummyimage.com/x.png/dddddd/000000",
+  "hourRate":4.34,
+  "dayRate":104.16,
+  "monthRate":3124.8
+}
+
+### AS ADMIN
+PUT http://localhost:3000/cars/49
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjgzMDMzNTExfQ.fSbUjbVmnxlN3uA1e19BT63OizNU4OCZCnSoeJIlmiI
+
+{ 
+  "name":"Test3.4",
+  "carType":"Test3.4",
+  "rating":3.32,
+  "fuel":8.69,
+  "image":"http://dummyimage.com/x.png/dddddd/000000",
+  "hourRate":4.34,
+  "dayRate":104.16,
+  "monthRate":3124.8
+}
+
+### AS ADMIN
+DELETE http://localhost:3000/cars/49
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjgzMDMzNTExfQ.fSbUjbVmnxlN3uA1e19BT63OizNU4OCZCnSoeJIlmiI
